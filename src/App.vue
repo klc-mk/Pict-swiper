@@ -3,7 +3,7 @@
   <p>
     <PictSwiper srcA='images/sample_pict_A.jpg' srcB='images/sample_pict_B.jpg'/>
   </p>
-
+  <p>test</p>
   </div>
 </template>
 

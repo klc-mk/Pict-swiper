@@ -11,7 +11,7 @@
         <div style="position:absolute;top:0px;left;0px;" :style="posset">
             <img class="imgtrim" :src="imageB">
         </div>
-        <span :style="barheight"/>
+        <span :style="barheight"></span>
 
     </div>
    
@@ -27,7 +27,7 @@ export default {
     data:function(){
         return{
             clicked:false,
-            xpos:20,
+            xpos:0,
             size:{width:0,height:0},
         }
     },
@@ -37,10 +37,10 @@ export default {
     },
     computed:{
         imageA:function(){
-            return require("../"+this.srcA);
+            return require("@/"+this.srcA);
         },
         imageB:function(){
-            return require("../"+this.srcB);
+            return require("@/"+this.srcB);
         },
         posset:function(){ 
             return {width:this.xpos+'px',height:this.size.height+'px'};
@@ -51,7 +51,7 @@ export default {
             top:'0px',
             left:this.xpos+'px',
             background: '#000000',
-            'z-index':'2'
+            'z-index':'2',
             };
         }
     },
@@ -63,7 +63,7 @@ export default {
         },
         imgdrag:function(e){
             if(this.clicked){
-                this.xpos = Math.min(this.size.width,e.clientX - this.$refs.parent.getBoundingClientRect().left -1);
+                this.xpos = Math.max(0,Math.min(this.size.width,e.clientX - this.$refs.parent.getBoundingClientRect().left -1));
             }
         },
         touchend:function(){
