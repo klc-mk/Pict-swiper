@@ -1,7 +1,6 @@
 <template>
   <div style="position:relative;" ref="parent">
-
-    <div style="position:absolute;top:0px;left;0px;z-index:0;"
+    <div style="top:0px;left;0px;z-index:0;"
         @mousedown="touchstart($event)"
         @mousemove="imgdrag($event)"
         @mouseleave="touchend($event)"
@@ -11,7 +10,7 @@
         <div style="position:absolute;top:0px;left;0px;" :style="posset">
             <img class="imgtrim" :src="imageB">
         </div>
-        <span :style="barheight"></span>
+        <span :style="barheight" style="text-align:left"></span>
 
     </div>
    
@@ -58,7 +57,7 @@ export default {
     methods:{
         touchstart:function(e){
             this.clicked = true;
-            this.xpos = e.clientX - this.$refs.parent.getBoundingClientRect().left -1;
+            this.xpos = Math.max(0,Math.min(this.size.width,e.clientX - this.$refs.parent.getBoundingClientRect().left -1));
 
         },
         imgdrag:function(e){

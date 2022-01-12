@@ -1,9 +1,16 @@
 <template>
   <div id="app">
   <p>
+    250px*250px
     <PictSwiper srcA='images/sample_pict_A.jpg' srcB='images/sample_pict_B.jpg'/>
   </p>
-  <p>test</p>
+  
+  <p>
+    750px*750px
+    <PictSwiper srcA='images/sample_pict_750A.jpg' srcB='images/sample_pict_750B.jpg'/>
+  </p>
+  
+
   </div>
 </template>
 
