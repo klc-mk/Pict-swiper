@@ -58,12 +58,12 @@ export default {
     methods:{
         touchstart:function(e){
             this.clicked = true;
-            this.xpos = e.clientX - this.$refs.parent.getBoundingClientRect().left;
+            this.xpos = e.clientX - this.$refs.parent.getBoundingClientRect().left -1;
 
         },
         imgdrag:function(e){
             if(this.clicked){
-                this.xpos = e.clientX - this.$refs.parent.getBoundingClientRect().left;
+                this.xpos = Math.min(this.size.width,e.clientX - this.$refs.parent.getBoundingClientRect().left -1);
             }
         },
         touchend:function(){
