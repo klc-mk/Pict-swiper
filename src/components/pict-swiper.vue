@@ -8,7 +8,7 @@
     >
         <img class="dragignore" :src="imageA" ref="imgref">
         <div style="position:absolute;top:0px;left;0px;" :style="posset">
-            <img class="imgtrim dragignore" :src="imageB">
+            <img class="imgtrim dragignore" :src="imageB" v-on:load="getImgSize">
         </div>
         <span :style="barheight" style="text-align:left"></span>
 
@@ -31,8 +31,8 @@ export default {
         }
     },
     mounted:function(){
-        this.size.height = this.$refs.imgref.naturalHeight;
-        this.size.width = this.$refs.imgref.naturalWidth;     
+
+
     },
     computed:{
         imageA:function(){
@@ -58,6 +58,12 @@ export default {
         }
     },
     methods:{
+        getImgSize:function(){
+            //画像を読み込んだ後でないとnaturalHWは取得出来ない！(ホットリロードだと気付かないがち)
+            this.size.height = this.$refs.imgref.naturalHeight;
+            this.size.width = this.$refs.imgref.naturalWidth;
+            console.log(this.size);
+        },
         touchstart:function(e){
             this.clicked = true;
             this.xpos = Math.max(0,Math.min(this.size.width,e.clientX - this.$refs.parent.getBoundingClientRect().left -1));
